@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'pages/home.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+ 
+  @override
   Widget build(BuildContext context) {
-    return new MainText();
-  }
-}
-
-class MainText extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return new Center(
-        child: new Text("Welcome to FillMe",
-            textDirection: TextDirection.ltr,
-            style: new TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold)));
+    final textTheme = Theme.of(context).textTheme;
+    return MaterialApp(
+      title: 'Flutter',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: Home(),
+    );
   }
 }
