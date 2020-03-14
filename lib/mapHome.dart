@@ -151,7 +151,7 @@ class _MyMapHomeState extends State<MyMapHome> {
               width: MediaQuery.of(context).size.width,
               child: GoogleMap(
                 initialCameraPosition:
-                    CameraPosition(target: LatLng(6.9147, 79.9733), zoom: 13.5),
+                    CameraPosition(target: LatLng(6.9147, 79.9733), zoom: 12),
                 markers: Set.from(allMarkers),
                 onMapCreated: mapCreated,
               ),
