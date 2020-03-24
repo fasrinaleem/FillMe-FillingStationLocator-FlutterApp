@@ -1,10 +1,11 @@
+import 'package:FillMe/pages/home_sidebar.dart';
 import 'package:flutter/material.dart';
-import 'pages/home.dart';
+import 'pages/welcome.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
- 
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: WelcomePage(),
     );
   }
 }

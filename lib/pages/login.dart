@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:FillMe/pages/signup.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
@@ -10,7 +11,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  
+  bool _isLoginForm;
+  String _errorMessage;
+
+  final _formKey = new GlobalKey<FormState>();
+
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -80,14 +85,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _createAccount() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
-      alignment: Alignment.bottomCenter,
+    return InkWell(
+      onTap: () {
+        navigateToSignUpPage(context);
+      },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Not have account ? Sign Up',
+            'Create an account > Sign Up',
             style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
           ),
           SizedBox(
@@ -126,47 +132,73 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Container(
-          height: MediaQuery.of(context).size.height,
-          child: Stack(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 3,
-                      child: SizedBox(),
+              height: MediaQuery.of(context).size.height,
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 3,
+                          child: SizedBox(),
+                        ),
+                        _title(),
+                        SizedBox(
+                          height: 16,
+                        ),
+
+                        _emailPasswordWidget(),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        _submitButton(),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        _createAccount(),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          alignment: Alignment.centerRight,
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: SizedBox(),
+                        ),
+
+                      ],
                     ),
-                    _title(),
-                    SizedBox(
-                      height: 16,
-                    ),
-                   
-                    _emailPasswordWidget(),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    _submitButton(),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      alignment: Alignment.centerRight,
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: SizedBox(),
-                    ),
-                  ],
-                ),
+                  ),
+
+
+                  Positioned(top: 40, left: 0, child: _backButton()),
+                ],
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: _createAccount(),
-              ),
-              Positioned(top: 40, left: 0, child: _backButton()),
-            ],
-          ),
-        )));
+            )));
   }
+  Widget showSecondaryButton() {
+    return new FlatButton(
+        child: new Text(
+            _isLoginForm ? 'Create an account' : 'Have an account? Sign in',
+            style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300)),
+        onPressed: toggleFormMode);
+  }
+
+  void toggleFormMode() {
+    resetForm();
+    setState(() {
+      _isLoginForm = !_isLoginForm;
+    });
+  }
+  void resetForm() {
+    _formKey.currentState.reset();
+    _errorMessage = "";
+  }
+}
+
+void navigateToSignUpPage(context) async {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => SignUpPage()));
 }
