@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:FillMe/services/crud_options.dart';
-import 'package:FillMe/pages/home_sidebar.dart';
+//import 'package:FillMe/pages/home_sidebar.dart';
 
-import 'dart:async';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({this.db_base, this.title});

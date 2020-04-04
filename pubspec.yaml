@@ -1,5 +1,5 @@
 name: FillMe
-description: A new Flutter application.
+description: A new Flutter project.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -24,9 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   firebase_database: ^3.0.7
-  link: ^1.0.0
   flutter_bloc: ^2.1.1
-  #cloud_firestore: ^0.12.7
 
 dev_dependencies:
   flutter_test:

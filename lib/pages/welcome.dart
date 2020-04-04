@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:FillMe/pages/login.dart';
 import 'package:FillMe/pages/signup.dart';
-import 'navigation_bloc.dart';
+import 'package:FillMe/pages/navigation_bloc.dart';
 
-class WelcomePage extends StatelessWidget with NavigationStates{
+class WelcomePage extends StatefulWidget with NavigationStates{
+ 
+   WelcomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Welcome Page',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: WelcomePage(),
-    );
-  }
+  _WelcomePageState createState() => _WelcomePageState();
 }
 
-class WelcomePageCont extends StatelessWidget {
+class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(

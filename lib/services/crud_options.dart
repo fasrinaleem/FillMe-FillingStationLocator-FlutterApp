@@ -1,5 +1,3 @@
-import 'dart:async';
-//import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class Methods {
   Future<String> login(String email, String password);

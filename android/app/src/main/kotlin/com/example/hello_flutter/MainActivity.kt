@@ -1,4 +1,4 @@
-package lk.sliit.flutterapp.fill_me
+package com.example.hello_flutter
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

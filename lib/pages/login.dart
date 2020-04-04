@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:FillMe/pages/signup.dart';
+import 'package:FillMe/pages/home_sidebar.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
@@ -68,19 +69,18 @@ class _LoginPageState extends State<LoginPage> {
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.deepPurpleAccent.shade200,
-            offset: Offset(2, 4),
-          )
-        ],
+            child: new RaisedButton(
+        elevation: 5.0,
+        shape: new RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(30.0)),
+        color: Colors.blue,
+        child: new Text('Login',
+            style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+            onPressed: () {
+                navigateToHomePage(context);
+                    },
       ),
-      child: Text(
-        'Login',
-        style: TextStyle(fontSize: 20, color: Colors.white),
-      ),
+      
     );
   }
 
@@ -201,4 +201,9 @@ class _LoginPageState extends State<LoginPage> {
 void navigateToSignUpPage(context) async {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => SignUpPage()));
+}
+
+void navigateToHomePage(context) async {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => HomePageWithSideBar()));
 }
