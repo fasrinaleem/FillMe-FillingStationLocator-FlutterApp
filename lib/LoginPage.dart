@@ -6,7 +6,8 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Color.fromRGBO(3, 9, 23, 1),
-      backgroundColor: Color.fromRGBO(10, 150, 227, 1),
+      // backgroundColor: Color.fromRGBO(10, 150, 227, 1),
+      backgroundColor: Color.fromRGBO(3, 15, 10, 1),
       body: Container(
         padding: EdgeInsets.all(30),
         child: Column(
@@ -77,7 +78,7 @@ class LoginPage extends StatelessWidget {
                     child: Center(
                       child: Text("Login",
                           style:
-                              TextStyle(color: Colors.white.withOpacity(.7))),
+                              TextStyle(color: Colors.white)),
                     ),
                   ),
                 )),
