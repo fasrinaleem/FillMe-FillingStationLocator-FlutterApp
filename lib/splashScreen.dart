@@ -39,8 +39,22 @@ class _SpachScreenState extends State<SplashScreen>
     _widthController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 600));
 
+// addd a listener to anim --> 7
+// Circle button will go to right side corner from left side when button is pressed
     _widthAnimation =
-        Tween<double>(begin: 80.0, end: 300.0).animate(_widthController);
+        Tween<double>(begin: 80.0, end: 300.0).animate(_widthController)
+          ..addStatusListener((status) {
+            if (status == AnimationStatus.completed) {
+              _positionController.forward();
+            }
+          });
+
+//set another controller and animation --> 6
+    _positionController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1000));
+
+    _positionAnimation =
+        Tween<double>(begin: 0.0, end: 215.0).animate(_positionController);
   }
 
   Widget build(BuildContext context) {
@@ -150,18 +164,23 @@ class _SpachScreenState extends State<SplashScreen>
                                           _scaleController.forward();
                                         },
                                         child: Stack(children: <Widget>[
-                                          Positioned(
-                                            left:
-                                                0, //Place the circle button into left side corner when it pressed --> 5
-                                            child: Container(
-                                              width: 60,
-                                              height: 60,
-                                              decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: Color.fromRGBO(
-                                                      0, 214, 227, 1)),
-                                              child: Icon(Icons.arrow_forward,
-                                                  color: Colors.white),
+                                          AnimatedBuilder(
+                                            animation: _positionController,
+                                            builder: (context, child) =>
+                                                Positioned(
+                                              left: _positionAnimation
+                                                  .value, //change based on anim size ---> 7
+                                              //  0, //Place the circle button into left side corner when it pressed --> 5
+                                              child: Container(
+                                                width: 60,
+                                                height: 60,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: Color.fromRGBO(
+                                                        0, 214, 227, 1)),
+                                                child: Icon(Icons.arrow_forward,
+                                                    color: Colors.white),
+                                              ),
                                             ),
                                           ),
                                         ]),
@@ -171,9 +190,9 @@ class _SpachScreenState extends State<SplashScreen>
                                 ),
                               ))),
                   //put the text to the top
-                  SizedBox(
-                    height: 60,
-                  ),
+                  // SizedBox(
+                  //   height: 60,
+                  // ),
                 ],
               ),
             )
