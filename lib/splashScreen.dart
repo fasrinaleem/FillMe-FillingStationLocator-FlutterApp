@@ -13,7 +13,9 @@ class _SpachScreenState extends State<SplashScreen> {
     final double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(3, 9, 23, 1),
+      backgroundColor: Color.fromRGBO(3, 15, 10, 1),
+      // backgroundColor: Color.fromRGBO(100, 122, 162, 50),
+      // backgroundColor: Colors.white,
       body: Container(
         width: double.infinity,
         child: Stack(
@@ -28,7 +30,7 @@ class _SpachScreenState extends State<SplashScreen> {
                     height: 400,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/one.png'),
+                            image: AssetImage('assets/images/one5.png'),
                             fit: BoxFit.cover)),
                   )),
             ),
@@ -43,7 +45,7 @@ class _SpachScreenState extends State<SplashScreen> {
                     height: 400,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/one.png'),
+                            image: AssetImage('assets/images/one5.png'),
                             fit: BoxFit.cover)),
                   )),
             ),
@@ -58,7 +60,7 @@ class _SpachScreenState extends State<SplashScreen> {
                     height: 400,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/one.png'),
+                            image: AssetImage('assets/images/one5.png'),
                             fit: BoxFit.cover)),
                   )),
             ),
@@ -84,7 +86,19 @@ class _SpachScreenState extends State<SplashScreen> {
                       )),
                   SizedBox(
                     height: 180,
-                  )
+                  ),
+                  FadeAnimation(
+                      1.6,
+                      Center(
+                        child: Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Color.fromRGBO(0, 214, 227, 1)
+                                  .withOpacity(.4)),
+                        ),
+                      ))
                 ],
               ),
             )
