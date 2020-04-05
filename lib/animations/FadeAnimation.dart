@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class FadeAnimation extends StatelessWidget {
+  //This class is mainly for the fading animation from top to bottom
+
   final double delay;
   final Widget child;
 

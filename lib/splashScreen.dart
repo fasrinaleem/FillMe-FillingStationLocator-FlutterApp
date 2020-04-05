@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'animations/FadeAnimation.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:onboarding/LoginPage.dart';
 
 void main() => runApp(
     MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()));
@@ -8,10 +10,11 @@ class SplashScreen extends StatefulWidget {
   _SpachScreenState createState() => _SpachScreenState();
 }
 
-//FadeAnimation.dart class is used just only for image (Same image 3 times appear)
+//FadeAnimation.dart class is used just only for fading from top to down
+//In Here Same image 3 times appear and text contents
 
 //There are 5 animations which are listed below,
-//1. Content coming from top to down
+//1. Content coming from top to down (FadeAnimation.dart)
 //2. Icon button become small when we press it
 //3. Icon button goes to the left
 //4. Icon button goest to left to right
@@ -84,7 +87,16 @@ class _SpachScreenState extends State<SplashScreen>
     _scale2Animation =
         Tween<double>(begin: 1.0, end: 32.0).animate(_scale2Controller)
           ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {}
+            if (status == AnimationStatus.completed) {
+              //Hiding the blank splash screeen and navigate to the Second screen
+              //Get the use of page_transition dependency --> 12
+              //Import the page transition package at top
+
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.fade, child: LoginPage()));
+            }
           });
   }
 
