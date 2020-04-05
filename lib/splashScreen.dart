@@ -8,6 +8,15 @@ class SplashScreen extends StatefulWidget {
   _SpachScreenState createState() => _SpachScreenState();
 }
 
+//FadeAnimation.dart class is used just only for image (Same image 3 times appear)
+
+//There are 5 animations which are listed below,
+//1. Content coming from top to down
+//2. Icon button become small when we press it
+//3. Icon button goes to the left
+//4. Icon button goest to left to right
+//5. Hide the arrow icon after 4 (come to right)
+
 class _SpachScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   AnimationController _scaleController;
@@ -19,6 +28,9 @@ class _SpachScreenState extends State<SplashScreen>
   Animation<double> _scale2Animation;
   Animation<double> _widthAnimation;
   Animation<double> _positionAnimation;
+
+//Hide the arrow icon after pressing the button -->11
+  bool hideIcon = false;
 
   @override
   void initState() {
@@ -54,7 +66,26 @@ class _SpachScreenState extends State<SplashScreen>
         vsync: this, duration: Duration(milliseconds: 1000));
 
     _positionAnimation =
-        Tween<double>(begin: 0.0, end: 215.0).animate(_positionController);
+        Tween<double>(begin: 0.0, end: 215.0).animate(_positionController)
+          ..addStatusListener((status) {
+            if (status == AnimationStatus.completed) {
+              setState(() {
+                //hide the icon after second anim (btn goes left to right)
+                hideIcon = true;
+              });
+              //add a scale2 controller listner --> 9
+              _scale2Controller.forward();
+            }
+          });
+// --> 8
+    _scale2Controller = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1000));
+
+    _scale2Animation =
+        Tween<double>(begin: 1.0, end: 32.0).animate(_scale2Controller)
+          ..addStatusListener((status) {
+            if (status == AnimationStatus.completed) {}
+          });
   }
 
   Widget build(BuildContext context) {
@@ -171,15 +202,36 @@ class _SpachScreenState extends State<SplashScreen>
                                               left: _positionAnimation
                                                   .value, //change based on anim size ---> 7
                                               //  0, //Place the circle button into left side corner when it pressed --> 5
-                                              child: Container(
-                                                width: 60,
-                                                height: 60,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Color.fromRGBO(
-                                                        0, 214, 227, 1)),
-                                                child: Icon(Icons.arrow_forward,
-                                                    color: Colors.white),
+                                              child: AnimatedBuilder(
+                                                animation: _scale2Controller,
+                                                builder: (context, child) =>
+                                                    Transform.scale(
+                                                        //hide the icon --> 10
+                                                        scale: _scale2Animation
+                                                            .value,
+                                                        child: Container(
+                                                          width: 60,
+                                                          height: 60,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                  color: Color
+                                                                      .fromRGBO(
+                                                                          0,
+                                                                          214,
+                                                                          227,
+                                                                          1)),
+                                                          //hide the icon after second ani (left btn goes to right)
+                                                          child: hideIcon ==
+                                                                  false
+                                                              ? Icon(
+                                                                  Icons
+                                                                      .arrow_forward,
+                                                                  color: Colors
+                                                                      .white)
+                                                              : Container(),
+                                                        )),
                                               ),
                                             ),
                                           ),
