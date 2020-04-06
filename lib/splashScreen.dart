@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'animations/FadeAnimation.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:onboarding/LoginPage.dart';
+import 'package:onboarding/login.dart';
 
 void main() => runApp(
     MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()));
