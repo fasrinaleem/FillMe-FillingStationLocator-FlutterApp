@@ -1,6 +1,7 @@
 import 'animations/FadeAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:onboarding/login.dart';
+import 'package:onboarding/mapHome.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -134,13 +135,19 @@ class RegistrationPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(45),
                                   color: Color.fromRGBO(0, 214, 227, 1)),
-                              child: Center(
+                              child: FlatButton(
                                 child: Text(
                                   "Register",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(color: Colors.white),
                                 ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            MyMapHome(),
+                                      ));
+                                },
                               ),
                             )),
                         SizedBox(
