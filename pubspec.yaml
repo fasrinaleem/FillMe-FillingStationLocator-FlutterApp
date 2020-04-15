@@ -27,6 +27,11 @@ dependencies:
   page_transition: ^1.1.4
   google_maps_flutter: ^0.5.24+1
   latlong: ^0.6.1
+  firebase_auth: ^0.14.0+5
+  cloud_firestore: any
+  provider: ^3.1.0
+  firebase_storage: ^3.0.8
+  path: ^1.6.4
 
 dev_dependencies:
   flutter_test:
