@@ -17,21 +17,21 @@ class FillingStation {
 
 final List<FillingStation> fillingStations = [
   FillingStation(
-      stationName: 'Ceypetco Filling Station Thalangama',
+      stationName: 'Ceypetco Filling Station',
       address: 'WW4M+WP Koswatta',
       description: 'Gas station',
       image:
           'https://lh5.googleusercontent.com/p/AF1QipPdPWEt26_1-1QqnzF-HLbzWIsSatEPyO28DUpg=w408-h306-k-no',
       locationCodes: LatLng(6.907520, 79.934333)),
   FillingStation(
-      stationName: 'Ceypetco Fuel Station',
-      address: 'B240 Malabe',
+      stationName: 'Laugfs Petroleum Mabima',
+      address: 'WXV6+3H Heiyanthuduwa',
       description: 'Fuel supplier',
       image:
-          'https://lh5.googleusercontent.com/p/AF1QipNfUGpM6GM_-x4AfWG2avjS1vnC1-dnK-YYQAwe=w408-h544-k-no',
-      locationCodes: LatLng(6.904848, 79.951753)),
+          'https://lh5.googleusercontent.com/p/AF1QipMZdPB8beRxm8zPdnZa6IBc4lrZ0Tx99rgFAoDe=w426-h240-k-no',
+      locationCodes: LatLng(6.945538, 79.961803)),
   FillingStation(
-      stationName: 'Shakthi Filling Station (CEYPETCO)',
+      stationName: 'Shakthi Filling Station',
       address: 'WXGJ+J3 Kaduwela',
       description: 'Fuel supplier',
       image:
@@ -43,7 +43,7 @@ final List<FillingStation> fillingStations = [
       description: 'Fuel supplier',
       image:
           'https://lh5.googleusercontent.com/p/AF1QipP2vJLHPLXbwDe9FLVx3IscJnKYzEb9-0qg1fuL=w493-h240-k-no',
-      locationCodes: LatLng(6.904856, 79.951759)),
+      locationCodes: LatLng(6.937780, 79.948108)),
   FillingStation(
       stationName: 'Laugfs Petroleum Koswatta',
       address: 'No. 260 H, B240, Battaramulla',
@@ -73,14 +73,14 @@ final List<FillingStation> fillingStations = [
           'https://geo2.ggpht.com/cbk?panoid=XIDb-hm0dZnh5XKZbucPqw&output=thumbnail&cb_client=search.gws-prod.gps&thumb=2&w=408&h=240&yaw=238.86092&pitch=0&thumbfov=100',
       locationCodes: LatLng(6.887634, 79.978989)),
   FillingStation(
-      stationName: 'Lanka IOC Hokandara Filling Station',
+      stationName: 'Lanka IOC Filling Station',
       address: 'VXJ6+56 Hokandara',
       description: 'Gas station',
       image:
           'https://lh5.googleusercontent.com/p/AF1QipM4jkHPq4U_viM_Rnzwhar3pVIT1pCPvOUNMzD2=w485-h240-k-no',
       locationCodes: LatLng(6.880734, 79.960526)),
   FillingStation(
-      stationName: 'Ceypetco Filling Station Battaramulla',
+      stationName: 'Ceypetco Filling Station',
       address: 'WW28+WX Battaramulla',
       description: 'Gas station',
       image:
