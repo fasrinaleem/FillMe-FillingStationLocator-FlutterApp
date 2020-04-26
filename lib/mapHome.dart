@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import 'package:fillme/fillingStationModel.dart';
+import 'navigation/navigation_bloc.dart';
 
-void main() => runApp(MyMapApp());
+//void main() => runApp(MyMapApp());
 
-class MyMapApp extends StatelessWidget {
+class MyMapApp extends StatelessWidget with NavigationStates {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,

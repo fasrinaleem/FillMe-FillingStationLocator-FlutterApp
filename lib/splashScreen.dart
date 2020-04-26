@@ -3,8 +3,8 @@ import 'animations/FadeAnimation.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:fillme/login.dart';
 
-void main() => runApp(
-    MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()));
+// void main() => runApp(
+//     MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()));
 
 class SplashScreen extends StatefulWidget {
   _SpachScreenState createState() => _SpachScreenState();
@@ -171,7 +171,7 @@ class _SpachScreenState extends State<SplashScreen>
                   FadeAnimation(
                       1.3,
                       Text(
-                        "Testing text comes here.. we can add what \n ever we wants to",
+                        "The official app for the largest chain of \n filling stations in Sri Lanka",
                         style: TextStyle(
                             color: Colors.white.withOpacity(.7), height: 1.4),
                       )),

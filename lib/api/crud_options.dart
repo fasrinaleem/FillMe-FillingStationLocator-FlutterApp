@@ -1,73 +1,42 @@
 // import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_storage/firebase_storage.dart';
-// import 'package:path/path.dart' as path;
-// //import 'package:uuid/uuid.dart';
-// import 'package:fillme/auth_session/get_session.dart';
-// import 'package:fillme/models/user.dart';
 
-// abstract class AuthMethods {
-//   Future<String> login(User user, AuthSession authSession);
 
-//   Future<String> signUp(
-//       String name, String contact, String email, String password);
-
-//   Future<FirebaseUser> getCurrentUser();
-
+// abstract class AuthImp {
+//   Future<String> signIn(String email, String password);
+//   Future<String> signUp(String _email, String _password);
+//   Future<String> getCurrentUser();
 //   Future<void> signOut();
-
-//   Future<void> sendVerifiation();
-
-//   Future<bool> isVerified();
 // }
 
-// class Base implements AuthMethods {
-//   final FirebaseAuth _fireAuth = FirebaseAuth.instance;
-
-//   @override
-//   Future<String> login(User user, AuthSession authSession) async {
-//     // TODO: implement login
-//     var userResult = (await _fireAuth.signInWithEmailAndPassword(
-//             email: user.email, password: user.password))
-//         .user;
-//     return userResult.uid;
-//   }
-
-//   @override
-//   Future<void> signOut() {
-//     // TODO: implement signOut
-//     return _fireAuth.signOut();
-//   }
-
-//   @override
-//   Future<String> signUp(
-//       String name, String contact, String email, String password) async {
-//     // TODO: implement signUp
-//     var user = (await _fireAuth.createUserWithEmailAndPassword(
-//             email: email, password: password))
-//         .user;
+// class Auth implements AuthImp {
+//   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  
+//   Future<String> signIn(String email, String password) async {
+//      print(email);
+//     AuthResult result = await _firebaseAuth.signInWithEmailAndPassword(
+//         email: email, password: password);
+//     FirebaseUser user = result.user;
 //     return user.uid;
 //   }
 
-//   @override
-//   Future<FirebaseUser> getCurrentUser() async {
-//     // TODO: implement getCurrentUser
-//     return await _fireAuth.currentUser();
+  
+//   Future<String> signUp(String _email, String _password) async {
+//     print(_email);
+//     AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
+//         email: _email, password: _password);
+//     FirebaseUser user = result.user;
+//   //  print(result);
+//     return user.uid;
 //   }
 
-//   @override
-//   Future<bool> isVerified() async {
-//     // TODO: implement isVerified
-//     var user = await _fireAuth.currentUser();
-
-//     return user.isEmailVerified;
+  
+//   Future<String> getCurrentUser() async {
+//     FirebaseUser user = await _firebaseAuth.currentUser();
+//     return user.uid;
 //   }
 
-//   @override
-//   Future<void> sendVerifiation() async {
-//     // TODO: implement sendVerifiation
-//     var user = await _fireAuth.currentUser();
-//     user.sendEmailVerification();
+ 
+//   Future<void> signOut() async {
+//     _firebaseAuth.signOut();
 //   }
 // }
