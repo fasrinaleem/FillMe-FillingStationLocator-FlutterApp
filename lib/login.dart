@@ -58,7 +58,7 @@ class _LoginPage extends State<LoginPage> {
         _errorMsg = "Check your email & add the new password..";
         showAlertDialog();
       } catch (e) {
-        _errorMsg = e.code;
+        _errorMsg = e.toString();
         showAlertDialog();
       }
     }
@@ -196,19 +196,27 @@ class _LoginPage extends State<LoginPage> {
                         ),
                         FadeAnimation(
                             1.5,
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 200,
-                                right: 5,
-                                bottom: 10,
-                              ),
-                              child: FlatButton(
-                                child: Text(
-                                  "Forgot Password?",
-                                  style: TextStyle(color: Colors.red),
+                            Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 160,
+                                    right: 5,
+                                    bottom: 10,
+                                  ),
+                                  child: FlatButton(
+                                    child: Text(
+                                      "Forgot Password?",
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.normal,
+                                        // decoration: TextDecoration.underline
+                                      ),
+                                    ),
+                                    onPressed: _forgotPwd,
+                                  ),
                                 ),
-                                onPressed: _forgotPwd,
-                              ),
+                              ],
                             )),
                         SizedBox(
                           height: 40,

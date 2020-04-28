@@ -74,7 +74,7 @@ class _FeedbackState extends State<Feedback> {
           showAlertDialog();
         });
       } catch (e) {
-        _message = e.code;
+        _message = e.toString();
         showAlertDialog();
       }
     }
@@ -98,7 +98,7 @@ class _FeedbackState extends State<Feedback> {
         _message = "Updated successfully";
         showAlertDialog();
       } catch (e) {
-        _message = e.code;
+        _message = e.toString();
         showAlertDialog();
       }
     }
@@ -154,9 +154,9 @@ class _FeedbackState extends State<Feedback> {
       await firestore.collection('feedbacks').document(doc.documentID).delete();
       _addFeedBackContrl.text = "";
       _message = "Feedback Delete Successfully";
-       showAlertDialog();
+      showAlertDialog();
     } catch (e) {
-      _message = e.code;
+      _message = e.toString();
       showAlertDialog();
     }
   }
@@ -181,19 +181,42 @@ class _FeedbackState extends State<Feedback> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 // update button
-                FlatButton(
-                    child:
-                        Text('Update', style: TextStyle(color: Colors.white)),
-                    color: Colors.green,
-                    onPressed: () {
-                      updateData(doc);
-                    }),
-                SizedBox(width: 8),
+                Container(
+                  height: 45,
+                  width: 100,
+                  margin: EdgeInsets.symmetric(horizontal: 45),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(45),
+                      color: Color.fromRGBO(255, 204, 0, 1)),
+                  child: FlatButton(
+                      child:
+                          Text('Update', style: TextStyle(color: Colors.white)),
+                      //color: Colors.green,
+                      onPressed: () {
+                        updateData(doc);
+                      }),
+                ),
                 //delete button
-                FlatButton(
-                  onPressed: () => deleteData(doc),
-                  child: Text('Delete'),
-                  color: Colors.red,
+                Padding(
+                  padding: const EdgeInsets.only(
+                      // left: 10,
+                      //right: 60,
+                      //bottom: 10,
+                      ),
+                  child: Container(
+                    height: 45,
+                    width: 100,
+                    // margin: EdgeInsets.symmetric(horizontal: 45),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(45),
+                        color: Colors.red),
+                    child: FlatButton(
+                      onPressed: () => deleteData(doc),
+                      child:
+                          Text('Delete', style: TextStyle(color: Colors.white)),
+                      //color: Colors.red,
+                    ),
+                  ),
                 ),
               ],
             )
@@ -291,20 +314,28 @@ class _FeedbackState extends State<Feedback> {
                         hintText: "Add Feedback...",
                         hintStyle: TextStyle(color: Colors.grey),
                       ),
-                      style: TextStyle(fontSize: 12, color: Colors.black),
+                      style: TextStyle(fontSize: 15, color: Colors.black),
                       cursorColor: Colors.black,
                       controller: _addFeedBackContrl,
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    FlatButton(
-                      child: Text(
-                        "Submit",
-                        style: TextStyle(color: Colors.white),
+                    Container(
+                      height: 45,
+                      width: 100,
+                      margin: EdgeInsets.symmetric(horizontal: 45),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(45),
+                          color: Color.fromRGBO(0, 214, 227, 1)),
+                      child: FlatButton(
+                        child: Text(
+                          "Submit",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        //color: Colors.green,
+                        onPressed: _submitFeedback,
                       ),
-                      color: Colors.green,
-                      onPressed: _submitFeedback,
                     ),
                     SizedBox(
                       height: 15,
