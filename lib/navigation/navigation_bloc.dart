@@ -2,11 +2,12 @@ import 'package:bloc/bloc.dart';
 
 import 'package:fillme/profile.dart';
 import 'package:fillme/mapHome.dart';
+import '../feedback.dart';
 
 enum NavigationEvents {
   ProfileEvent,
   DisplayMapEvent,
-
+  FeedbackEvent,
 }
 
 abstract class NavigationStates {}
@@ -23,6 +24,9 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         break;
       case NavigationEvents.DisplayMapEvent:
         yield MyMapApp();
+        break;
+      case NavigationEvents.FeedbackEvent:
+        yield FeedbackPage();
         break;
     }
   }

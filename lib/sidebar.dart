@@ -19,7 +19,7 @@ class _SideBarState extends State<SideBar>
   StreamController<bool> isSidebarOpenedStreamController;
   Stream<bool> isSidebarOpenedStream;
   StreamSink<bool> isSidebarOpenedSink;
-  
+
   final _animationDuration = const Duration(milliseconds: 500);
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
@@ -72,7 +72,7 @@ class _SideBarState extends State<SideBar>
             children: <Widget>[
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 1),
                   color: const Color(0xFF262AAA),
                   child: Column(
                     children: <Widget>[
@@ -129,6 +129,15 @@ class _SideBarState extends State<SideBar>
                         },
                       ),
                       MenuList(
+                        icon: Icons.assignment,
+                        title: "Feedback",
+                        onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.FeedbackEvent);
+                        },
+                      ),
+                      MenuList(
                         icon: Icons.lock_outline,
                         title: "Log Out",
                         onTap: () {
@@ -169,7 +178,7 @@ class _SideBarState extends State<SideBar>
                         progress: _animationController.view,
                         icon: AnimatedIcons.menu_close,
                         color: Color(0xFF262AAA),
-                        size: 30,
+                        size: 35,
                       ),
                     ),
                   ),

@@ -1,7 +1,7 @@
 import 'animations/FadeAnimation.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fillme/registration.dart';
 import 'home_sidebar.dart';
 
@@ -22,7 +22,7 @@ class _LoginPage extends State<LoginPage> {
   String _errorMsg = "";
   String _successMsg = "";
 
-  void _submit() async {
+  Future _submit() async {
     if (validate()) {
       try {
         print(_email);
@@ -44,6 +44,23 @@ class _LoginPage extends State<LoginPage> {
       }
     } else {
       showAlertDialog();
+    }
+  }
+
+  Future _forgotPwd() async {
+    _email = _emailController.text;
+    if (_email.isEmpty) {
+      _errorMsg = "Please Add your email..";
+      showAlertDialog();
+    } else {
+      try {
+        await _firebaseAuth.sendPasswordResetEmail(email: _email);
+        _errorMsg = "Check your email & add the new password..";
+        showAlertDialog();
+      } catch (e) {
+        _errorMsg = e.code;
+        showAlertDialog();
+      }
     }
   }
 
@@ -185,9 +202,12 @@ class _LoginPage extends State<LoginPage> {
                                 right: 5,
                                 bottom: 10,
                               ),
-                              child: Text(
-                                "Forgot Password?",
-                                style: TextStyle(color: Colors.grey),
+                              child: FlatButton(
+                                child: Text(
+                                  "Forgot Password?",
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                                onPressed: _forgotPwd,
                               ),
                             )),
                         SizedBox(

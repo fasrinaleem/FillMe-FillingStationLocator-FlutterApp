@@ -1,3 +1,4 @@
+//import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,10 +20,11 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   FirebaseUser currentUser;
+  final firestore = Firestore.instance;
 
-  String _name;
-  String _uid;
-  String _email;
+  String _name = "";
+  String _uid = "";
+  String _email = "";
 
   @override
   initState() {
@@ -32,17 +34,48 @@ class _ProfileState extends State<Profile> {
 
   void getCurrentUser() async {
     currentUser = await FirebaseAuth.instance.currentUser();
-    // data = Firestore.instance
-    //     .collection("users")
-    //     .document(currentUser.uid)
-    //     .snapshots();
-    //     bil
-    //     //  builder(BuildContext context,
-    //     //           AsyncSnapshot<QuerySnapshot> snapshot)
-    // _name = currentUser.displayName;
-    // _uid = currentUser.uid;
-    // _email = currentUser.email;
-    // print(_name);
+    _uid = currentUser.uid;
+    _email = currentUser.email;
+    _name = currentUser.displayName;
+    print("test name"+_name);
+
+    // try {
+    //   Firestore.instance
+    //       .collection('users')
+    //       .where('uid', isEqualTo: _uid)
+    //       .snapshots()
+    //       .listen((data) =>
+    //           data.documents.forEach((doc) => _name = doc["displayName"]));
+
+    //   print("name" + _name);
+    //   print(_email);
+    //   print(currentUser);
+    // } catch (e) {
+    //   print(e.code);
+    // }
+  }
+
+  ListTile displayDetails(DocumentSnapshot doc) {
+    return ListTile(
+      title: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              '${doc.data['displayName']}',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 12),
+            Text(
+              '${doc.data['email']}',
+              style: TextStyle(fontSize: 14),
+            ),
+          ],
+          mainAxisAlignment: MainAxisAlignment.end,
+        ),
+      ),
+    );
   }
 
   @override
@@ -54,58 +87,33 @@ class _ProfileState extends State<Profile> {
       ),
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            FutureBuilder(
-              future: FirebaseAuth.instance.currentUser(),
-              builder: (BuildContext context, AsyncSnapshot user) {
-                if (user.connectionState == ConnectionState.waiting) {
-                  return Container();
-                } else {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 60,
-                      ),
-                      Text(
-                        "Welcome ",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        user.data.displayName.toString() + "!",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 20,
-                        ),
-                      )
-                    ],
-               
-                  );
-                 //  Row(
-                  //    mainAxisAlignment: MainAxisAlignment.center,
-                  //  children: <Widget>[
-
-                  //                    SizedBox(
-                  //       height: 60,
-                  //     ),
-                  //     Text(
-                  //       "123 ",
-                  //       style: TextStyle(
-                  //         color: Colors.black,
-                  //         fontSize: 20,
-                  //       ),
-                  //     ),
-                  //  ],
-                  // );
-                }
-              },
+            SizedBox(
+              height: 20,
             ),
+            Text(
+              "Welcome ",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+            StreamBuilder<QuerySnapshot>(
+                stream: firestore
+                    .collection('users')
+                    .where('uid', isEqualTo: _uid)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                        children: snapshot.data.documents
+                            .map((doc) => displayDetails(doc))
+                            .toList());
+                  } else {
+                    return SizedBox();
+                  }
+                }),
           ],
           mainAxisAlignment: MainAxisAlignment.start,
         ),

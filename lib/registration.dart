@@ -31,7 +31,7 @@ class _RegistrationPage extends State<RegistrationPage> {
   String _successMsg = "";
   String _name;
 
-  void _submitForm() async {
+  Future _submitForm() async {
     if (validate()) {
       try {
         print(_email);
