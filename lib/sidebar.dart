@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'login.dart';
 import 'navigation/navigation_bloc.dart';
 import 'menu.dart';
-import 'splashScreen.dart';
 
 class SideBar extends StatefulWidget {
   @override
@@ -67,7 +67,7 @@ class _SideBarState extends State<SideBar>
           top: 0,
           bottom: 0,
           left: isSideBarOpenedAsync.data ? 0 : -screenWidth,
-          right: isSideBarOpenedAsync.data ? 0 : screenWidth - 45,
+          right: isSideBarOpenedAsync.data ? 0 : screenWidth - 35,
           child: Row(
             children: <Widget>[
               Expanded(
@@ -120,15 +120,6 @@ class _SideBarState extends State<SideBar>
                         },
                       ),
                       MenuList(
-                        icon: Icons.person,
-                        title: "My Profile",
-                        onTap: () {
-                          onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.ProfileEvent);
-                        },
-                      ),
-                      MenuList(
                         icon: Icons.assignment,
                         title: "Feedback",
                         onTap: () {
@@ -146,7 +137,7 @@ class _SideBarState extends State<SideBar>
                                 context,
                                 MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      SplashScreen(),
+                                      LoginPage(),
                                 ));
                           });
                         },
@@ -170,15 +161,15 @@ class _SideBarState extends State<SideBar>
                   },
                   child: ClipPath(
                     child: Container(
-                      width: 35,
+                      width: 37,
                       height: 56,
-                      color: Colors.blue,
+                      color: Colors.transparent,
                       alignment: Alignment.centerLeft,
                       child: AnimatedIcon(
                         progress: _animationController.view,
                         icon: AnimatedIcons.menu_close,
                         color: Color(0xFF262AAA),
-                        size: 35,
+                        size: 40,
                       ),
                     ),
                   ),

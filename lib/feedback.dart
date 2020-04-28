@@ -22,6 +22,7 @@ class _FeedbackState extends State<Feedback> {
   final firestore = Firestore.instance;
 
   String _uid = "";
+  String _email ="";
   String _message = "";
   String count = "0";
   String feedback = "";
@@ -37,20 +38,7 @@ class _FeedbackState extends State<Feedback> {
     //current user
     FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
     _uid = currentUser.uid;
-    // get the count of feedback count for user
-    // try {
-    //   count = Firestore.instance
-    //       .collection('feedbacks')
-    //       .where('uid', isEqualTo: _uid)
-    //       .snapshots()
-    //       .length
-    //       .toString();
-
-    //   print("document count" + count);
-    //   print(_uid);
-    // } catch (e) {
-    //   print("error " + e.code);
-    // }
+    _email = currentUser.email;
   }
 
 //submit newly added feedback
@@ -307,7 +295,17 @@ class _FeedbackState extends State<Feedback> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      height: 12,
+                      height: 5,
+                    ),
+                    Text(
+                      _email,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                     SizedBox(
+                      height: 5,
                     ),
                     TextFormField(
                       decoration: InputDecoration(

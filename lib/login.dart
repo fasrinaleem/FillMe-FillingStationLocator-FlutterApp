@@ -19,7 +19,7 @@ class _LoginPage extends State<LoginPage> {
 
   String _email;
   String _password;
-  String _errorMsg = "";
+  String _message = "";
   String _successMsg = "";
 
   Future _submit() async {
@@ -35,11 +35,11 @@ class _LoginPage extends State<LoginPage> {
 
         print("login user  =" + userId);
         _successMsg = "Successfully Login";
-        _errorMsg = "Successfully Login";
+        _message = "Successfully Login";
         showAlertDialog();
       } catch (e) {
         print("Error = " + e.toString());
-        _errorMsg = e.code;
+        _message = e.code;
         showAlertDialog();
       }
     } else {
@@ -50,15 +50,15 @@ class _LoginPage extends State<LoginPage> {
   Future _forgotPwd() async {
     _email = _emailController.text;
     if (_email.isEmpty) {
-      _errorMsg = "Please Add your email..";
+      _message = "Please Add your email..";
       showAlertDialog();
     } else {
       try {
         await _firebaseAuth.sendPasswordResetEmail(email: _email);
-        _errorMsg = "Check your email & add the new password..";
+        _message = "Check your email & add the new password..";
         showAlertDialog();
       } catch (e) {
-        _errorMsg = e.toString();
+        _message = e.toString();
         showAlertDialog();
       }
     }
@@ -297,17 +297,14 @@ class _LoginPage extends State<LoginPage> {
     if ((_email.isEmpty && _password.isEmpty) ||
         _email.isEmpty ||
         _password.isEmpty) {
-      _errorMsg = "Missing Required Fields";
+      _message = "Missing Required Fields";
       return false;
     } else if (!RegExp(
             r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
         .hasMatch(_email)) {
-      _errorMsg = "Please enter a valid email address";
+      _message = "Please enter a valid email address";
       return false;
-    } else if (_password.length < 6) {
-      _errorMsg = "Password must be 6 characters";
-      return false;
-    } else {
+    }else {
       return true;
     }
   }
@@ -330,7 +327,7 @@ class _LoginPage extends State<LoginPage> {
 
     AlertDialog alert = AlertDialog(
       title: Text('Message'),
-      content: Text(_errorMsg),
+      content: Text(_message),
       actions: <Widget>[
         okButton,
       ],
