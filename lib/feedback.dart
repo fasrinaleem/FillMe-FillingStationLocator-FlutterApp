@@ -22,7 +22,7 @@ class _FeedbackState extends State<Feedback> {
   final firestore = Firestore.instance;
 
   String _uid = "";
-  String _email ="";
+  String _email = "";
   String _message = "";
   String count = "0";
   String feedback = "";
@@ -62,7 +62,7 @@ class _FeedbackState extends State<Feedback> {
           showAlertDialog();
         });
       } catch (e) {
-        _message = e.toString();
+        _message = e.message;
         showAlertDialog();
       }
     }
@@ -86,7 +86,7 @@ class _FeedbackState extends State<Feedback> {
         _message = "Updated successfully";
         showAlertDialog();
       } catch (e) {
-        _message = e.toString();
+        _message = e.message;
         showAlertDialog();
       }
     }
@@ -144,7 +144,7 @@ class _FeedbackState extends State<Feedback> {
       _message = "Feedback Delete Successfully";
       showAlertDialog();
     } catch (e) {
-      _message = e.toString();
+      _message = e.message;
       showAlertDialog();
     }
   }
@@ -179,7 +179,6 @@ class _FeedbackState extends State<Feedback> {
                   child: FlatButton(
                       child:
                           Text('Update', style: TextStyle(color: Colors.white)),
-                      //color: Colors.green,
                       onPressed: () {
                         updateData(doc);
                       }),
@@ -202,7 +201,6 @@ class _FeedbackState extends State<Feedback> {
                       onPressed: () => deleteData(doc),
                       child:
                           Text('Delete', style: TextStyle(color: Colors.white)),
-                      //color: Colors.red,
                     ),
                   ),
                 ),
@@ -213,68 +211,6 @@ class _FeedbackState extends State<Feedback> {
       ),
     );
   }
-
-  // //display fields function
-  // Widget displayFeedBacks() {
-  //   // if count is 0 ; user can add the new feedback
-  //   //if (count == '0') {
-  //     return ListView(
-  //         child: Padding(
-  //             padding: const EdgeInsets.all(8.0),
-  //                     Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //               crossAxisAlignment: CrossAxisAlignment.center,
-  //               children: <Widget>[
-  //                 SizedBox(
-  //                   height: 20,
-  //                 ),
-  //                 TextFormField(
-  //                   decoration: InputDecoration(
-  //                     hintText: "Add Feedback...",
-  //                     hintStyle: TextStyle(color: Colors.grey),
-  //                   ),
-  //                   style: TextStyle(fontSize: 12, color: Colors.black),
-  //                   cursorColor: Colors.black,
-  //                   controller: _addFeedBackContrl,
-  //                 ),
-  //                 SizedBox(
-  //                   height: 10,
-  //                 ),
-  //                 FlatButton(
-  //                   child: Text(
-  //                     "Submit",
-  //                     style: TextStyle(color: Colors.white),
-  //                   ),
-  //                   color: Colors.green,
-  //                   onPressed: _submitFeedback,
-  //                 ),
-  //                 SizedBox(
-  //                   height: 100,
-  //                 ),
-  //               ],
-  //             ),
-  //  // } else {
-  //     //get the logged user entered feedback
-  //      StreamBuilder<QuerySnapshot>(
-  //         stream: firestore
-  //             .collection('feedbacks')
-  //             .where('uid', isEqualTo: _uid)
-  //             .snapshots(),
-  //         builder: (context, snapshot) {
-  //           if (snapshot.hasData) {
-  //             return Column(
-  //                 children: snapshot.data.documents
-  //                     .map((doc) => buildFeedback(doc))
-  //                     .toList());
-  //           } else {
-  //             return SizedBox();
-  //           }
-  //         }),
-
-  //         ),
-  //     )
-  // //  }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -304,7 +240,7 @@ class _FeedbackState extends State<Feedback> {
                         fontSize: 16,
                       ),
                     ),
-                     SizedBox(
+                    SizedBox(
                       height: 5,
                     ),
                     TextFormField(

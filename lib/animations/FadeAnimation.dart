@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class FadeAnimation extends StatelessWidget {
-  //This class is mainly for the fading animation from top to bottom
-
+  // This class is mainly for the fading animation from top to bottom
+  // simple_animations dependency is used
   final double delay;
   final Widget child;
 
+// Setting the delay animation begin and end time
+// Setting animation into 500 miliseconds delay
   FadeAnimation(this.delay, this.child);
 
   @override

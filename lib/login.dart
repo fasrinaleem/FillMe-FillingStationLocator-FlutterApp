@@ -39,7 +39,7 @@ class _LoginPage extends State<LoginPage> {
         showAlertDialog();
       } catch (e) {
         print("Error = " + e.toString());
-        _message = e.code;
+        _message = e.message;
         showAlertDialog();
       }
     } else {
@@ -50,15 +50,15 @@ class _LoginPage extends State<LoginPage> {
   Future _forgotPwd() async {
     _email = _emailController.text;
     if (_email.isEmpty) {
-      _message = "Please Add your email..";
+      _message = "Please Add your email.";
       showAlertDialog();
     } else {
       try {
         await _firebaseAuth.sendPasswordResetEmail(email: _email);
-        _message = "Check your email & add the new password..";
+        _message = "Check your email & add the new password.";
         showAlertDialog();
       } catch (e) {
-        _message = e.toString();
+        _message = e.message;
         showAlertDialog();
       }
     }
@@ -101,6 +101,7 @@ class _LoginPage extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Main container for login screen (Background container - Sky blue one)
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -118,9 +119,12 @@ class _LoginPage extends State<LoginPage> {
             Padding(
               padding: EdgeInsets.all(10),
               child: Column(
+                // Put the Login and welcome message on top of main container (Bakground - Sky blue one)
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   FadeAnimation(
+                      // Set the animation effect to input text field
+                      // Brigining the FadeAnimation from FadeAnimation.dart class
                       1,
                       Text(
                         "Login",
@@ -140,24 +144,31 @@ class _LoginPage extends State<LoginPage> {
             ),
             SizedBox(height: 20),
             Expanded(
+              // Put another container (second container) on top of main container
               child: Container(
+                // Setting the box radius as circular (Box decorations)
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40))),
                 child: SingleChildScrollView(
+                  // set the paddings for login ui
                   child: Padding(
                     padding: EdgeInsets.all(20),
                     child: Column(
                       children: <Widget>[
+                        // set the heigh from the top (from main container top)
                         SizedBox(
                           height: 55,
                         ),
                         FadeAnimation(
+                          // Set the animation effect to input text field
+                          // Brigining the FadeAnimation from FadeAnimation.dart class
                           1.4,
                           Container(
                             decoration: BoxDecoration(
+                                // Design the input text field as circular one and showing the sky blue shadow on it - email field
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(50),
                                 boxShadow: [
@@ -172,12 +183,16 @@ class _LoginPage extends State<LoginPage> {
                           ),
                         ),
                         SizedBox(
+                          // Set space after email input text field
                           height: 10,
                         ),
                         FadeAnimation(
+                          // Set the animation effect to input text field
+                          // Brigining the FadeAnimation from FadeAnimation.dart class
                           1.4,
                           Container(
                             decoration: BoxDecoration(
+                                // Design the input text field as circular one and showing the sky blue shadow on it - Password field
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(50),
                                 boxShadow: [
@@ -192,13 +207,17 @@ class _LoginPage extends State<LoginPage> {
                           ),
                         ),
                         SizedBox(
+                          // Set space after password input text field
                           height: 10,
                         ),
                         FadeAnimation(
+                            // Set the animation effect to input text field
+                            // Brigining the FadeAnimation from FadeAnimation.dart class
                             1.5,
                             Row(
                               children: <Widget>[
                                 Padding(
+                                  // set the forgot password link
                                   padding: const EdgeInsets.only(
                                     left: 160,
                                     right: 5,
@@ -210,7 +229,6 @@ class _LoginPage extends State<LoginPage> {
                                       style: TextStyle(
                                         color: Colors.grey,
                                         fontWeight: FontWeight.normal,
-                                        // decoration: TextDecoration.underline
                                       ),
                                     ),
                                     onPressed: _forgotPwd,
@@ -219,9 +237,12 @@ class _LoginPage extends State<LoginPage> {
                               ],
                             )),
                         SizedBox(
+                          //set the space after forgot password link
                           height: 40,
                         ),
                         FadeAnimation(
+                            // Set the animation effect to input text field
+                            // Brigining the FadeAnimation from FadeAnimation.dart class
                             1.6,
                             Container(
                               height: 45,
@@ -231,6 +252,7 @@ class _LoginPage extends State<LoginPage> {
                                   borderRadius: BorderRadius.circular(45),
                                   color: Color.fromRGBO(0, 214, 227, 1)),
                               child: FlatButton(
+                                // Design the login button as circular one and showing the sky blue shadow on it
                                 child: Text(
                                   "Login",
                                   style: TextStyle(color: Colors.white),
@@ -239,9 +261,12 @@ class _LoginPage extends State<LoginPage> {
                               ),
                             )),
                         SizedBox(
+                          // Set space after login button
                           height: 10,
                         ),
                         FadeAnimation(
+                            // Set the animation effect to input text field
+                            // Brigining the FadeAnimation from FadeAnimation.dart class
                             1.7,
                             Padding(
                               padding: const EdgeInsets.only(
@@ -258,6 +283,7 @@ class _LoginPage extends State<LoginPage> {
                                   Container(
                                     child: FlatButton(
                                       child: Text(
+                                        // Set the Register link
                                         "Register",
                                         style: TextStyle(color: Colors.blue),
                                       ),
@@ -275,6 +301,7 @@ class _LoginPage extends State<LoginPage> {
                               ),
                             )),
                         SizedBox(
+                          // Set space after register link
                           height: 5,
                         ),
                       ],
@@ -304,7 +331,7 @@ class _LoginPage extends State<LoginPage> {
         .hasMatch(_email)) {
       _message = "Please enter a valid email address";
       return false;
-    }else {
+    } else {
       return true;
     }
   }

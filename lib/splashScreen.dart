@@ -105,8 +105,6 @@ class _SpachScreenState extends State<SplashScreen>
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(3, 15, 10, 1),
-      // backgroundColor: Color.fromRGBO(100, 122, 162, 50),
-      // backgroundColor: Colors.white,
       body: Container(
         width: double.infinity,
         child: Stack(
@@ -121,11 +119,12 @@ class _SpachScreenState extends State<SplashScreen>
                     height: 400,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/one5.png'),
+                          //set the background image
+                            image: AssetImage('assets/images/background-image.png'),
                             fit: BoxFit.cover)),
                   )),
             ),
-            //same image for background shadow
+            //same image for background shadow animation
             Positioned(
               top: -100,
               left: 0,
@@ -136,11 +135,11 @@ class _SpachScreenState extends State<SplashScreen>
                     height: 400,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/one5.png'),
+                            image: AssetImage('assets/images/background-image.png'),
                             fit: BoxFit.cover)),
                   )),
             ),
-            //same image for background shadow
+            //same image for background shadow animation
             Positioned(
               top: -150,
               left: 0,
@@ -151,7 +150,7 @@ class _SpachScreenState extends State<SplashScreen>
                     height: 400,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/one5.png'),
+                            image: AssetImage('assets/images/background-image.png'),
                             fit: BoxFit.cover)),
                   )),
             ),
@@ -171,6 +170,7 @@ class _SpachScreenState extends State<SplashScreen>
                   FadeAnimation(
                       1.3,
                       Text(
+                        //welcome message
                         "The official app for the largest chain of \n filling stations in Sri Lanka",
                         style: TextStyle(
                             color: Colors.white.withOpacity(.7), height: 1.4),
@@ -181,7 +181,6 @@ class _SpachScreenState extends State<SplashScreen>
                   FadeAnimation(
                       1.6,
                       //Refoctoring centor into wrap padding to add the animation --> 1
-                      // Center(
                       AnimatedBuilder(
                           animation: _scaleController,
                           builder: (context, child) => Transform.scale(
@@ -191,8 +190,6 @@ class _SpachScreenState extends State<SplashScreen>
                                     animation: _widthController,
                                     builder: (context, child) => Container(
                                       //Change the width based on animation (width size becomes bigger from 60 to 80) --> 4
-                                      // child: Container(
-                                      // width: 80,
                                       width: _widthAnimation.value,
                                       height: 80,
                                       padding: EdgeInsets.all(10),
@@ -253,10 +250,6 @@ class _SpachScreenState extends State<SplashScreen>
                                   ),
                                 ),
                               ))),
-                  //put the text to the top
-                  // SizedBox(
-                  //   height: 60,
-                  // ),
                 ],
               ),
             )

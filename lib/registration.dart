@@ -27,7 +27,7 @@ class _RegistrationPage extends State<RegistrationPage> {
   String _email;
   String _password;
   String _verifyPwd;
-  String _errorMsg;
+  String _message;
   String _successMsg = "";
   String _name;
 
@@ -53,7 +53,7 @@ class _RegistrationPage extends State<RegistrationPage> {
             'email': _email,
             'displayName': _name
           }).then((onValue) {
-            _errorMsg = "Successfully Register";
+            _message = "Successfully Register";
             _successMsg = "Successfully Register";
             showAlertDialog();
           });
@@ -61,7 +61,7 @@ class _RegistrationPage extends State<RegistrationPage> {
       } catch (e) {
         print("EError = " + e.toString());
         print("Err = " + e.toString());
-        _errorMsg = e.toString();
+        _message = e.message;
         showAlertDialog();
       }
     } else {
@@ -137,6 +137,7 @@ class _RegistrationPage extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Main container for Registration screen (Background container - Sky blue one)
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -154,15 +155,19 @@ class _RegistrationPage extends State<RegistrationPage> {
             Padding(
               padding: EdgeInsets.all(20),
               child: Column(
+                // Put the Register and welcome message on top of main container (Bakground - Sky blue one)
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   FadeAnimation(
+                      // Set the animation effect to input text field
+                      // Brigining the FadeAnimation from FadeAnimation.dart class
                       1,
                       Text(
                         "Registration",
                         style: TextStyle(color: Colors.white, fontSize: 40),
                       )),
                   SizedBox(
+                    // Set space after Registration text
                     height: 10,
                   ),
                   FadeAnimation(
@@ -176,7 +181,9 @@ class _RegistrationPage extends State<RegistrationPage> {
             ),
             SizedBox(height: 20),
             Expanded(
+              // Put another container (second container) on top of main container
               child: Container(
+                // Setting the box radius as circular (Box decorations)
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -187,12 +194,16 @@ class _RegistrationPage extends State<RegistrationPage> {
                     padding: EdgeInsets.all(20),
                     child: Column(
                       children: <Widget>[
+                        // set the heigh from the top (from main container top)
                         SizedBox(
                           height: 10,
                         ),
                         FadeAnimation(
+                            // Set the animation effect to input text field
+                            // Brigining the FadeAnimation from FadeAnimation.dart class
                             1.4,
                             Container(
+                              // Design the input text field as circular one and showing the sky blue shadow on it - name field
                               child: Column(
                                 children: <Widget>[
                                   SizedBox(
@@ -218,11 +229,15 @@ class _RegistrationPage extends State<RegistrationPage> {
                                     ),
                                   ),
                                   SizedBox(
+                                    // Set space after name field
                                     height: 10,
                                   ),
                                   FadeAnimation(
+                                    // Set the animation effect to input text field
+                                    // Brigining the FadeAnimation from FadeAnimation.dart class
                                     1.4,
                                     Container(
+                                      // Design the input text field as circular one and showing the sky blue shadow on it - email field
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
@@ -240,11 +255,15 @@ class _RegistrationPage extends State<RegistrationPage> {
                                     ),
                                   ),
                                   SizedBox(
+                                    // Set space after email field
                                     height: 10,
                                   ),
                                   FadeAnimation(
+                                    // Set the animation effect to input text field
+                                    // Brigining the FadeAnimation from FadeAnimation.dart class
                                     1.4,
                                     Container(
+                                      // Design the input text field as circular one and showing the sky blue shadow on it - password field
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
@@ -262,9 +281,12 @@ class _RegistrationPage extends State<RegistrationPage> {
                                     ),
                                   ),
                                   SizedBox(
+                                    // Set space after password field
                                     height: 10,
                                   ),
                                   FadeAnimation(
+                                    // Set the animation effect to input text field
+                                    // Brigining the FadeAnimation from FadeAnimation.dart class
                                     1.4,
                                     Container(
                                       decoration: BoxDecoration(
@@ -292,6 +314,8 @@ class _RegistrationPage extends State<RegistrationPage> {
                           height: 35,
                         ),
                         FadeAnimation(
+                            // Set the animation effect to input text field
+                            // Brigining the FadeAnimation from FadeAnimation.dart class
                             1.6,
                             Container(
                               height: 45,
@@ -301,6 +325,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                                   borderRadius: BorderRadius.circular(45),
                                   color: Color.fromRGBO(0, 214, 227, 1)),
                               child: FlatButton(
+                                // Design the register button as circular one and showing the sky blue shadow on it
                                 child: Text(
                                   "Register",
                                   style: TextStyle(color: Colors.white),
@@ -309,9 +334,12 @@ class _RegistrationPage extends State<RegistrationPage> {
                               ),
                             )),
                         SizedBox(
+                          // Set space after register button
                           height: 5,
                         ),
                         FadeAnimation(
+                            // Set the animation effect to input text field
+                            // Brigining the FadeAnimation from FadeAnimation.dart class
                             1.7,
                             Padding(
                               padding: const EdgeInsets.only(
@@ -327,6 +355,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                     Container(
+                                      // Set the login link
                                       child: FlatButton(
                                         child: Text(
                                           "Login",
@@ -348,6 +377,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                               ),
                             )),
                         SizedBox(
+                          // Set space after login link
                           height: 5,
                         ),
                       ],
@@ -371,18 +401,18 @@ class _RegistrationPage extends State<RegistrationPage> {
     });
     print(_name);
     if (_email.isEmpty || _password.isEmpty || _name.isEmpty) {
-      _errorMsg = "Missing Required Fields";
+      _message = "Missing Required Fields";
       return false;
     } else if (!RegExp(
             r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
         .hasMatch(_email)) {
-      _errorMsg = "Please enter a valid email address";
+      _message = "Please enter a valid email address";
       return false;
     } else if (_password.length < 6) {
-      _errorMsg = "Password must be 6 characters";
+      _message = "Password must be 6 characters";
       return false;
     } else if (_verifyPwd != _password) {
-      _errorMsg = "Passwords do not match";
+      _message = "Passwords do not match";
       return false;
     } else {
       return true;
@@ -407,7 +437,7 @@ class _RegistrationPage extends State<RegistrationPage> {
 
     AlertDialog alert = AlertDialog(
       title: Text('Message'),
-      content: Text(_errorMsg),
+      content: Text(_message),
       actions: <Widget>[
         okButton,
       ],

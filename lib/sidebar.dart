@@ -73,7 +73,7 @@ class _SideBarState extends State<SideBar>
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 1),
-                  color: const Color(0xFF262AAA),
+                  color: Color.fromRGBO(0, 214, 227, 1),
                   child: Column(
                     children: <Widget>[
                       SizedBox(
@@ -96,10 +96,7 @@ class _SideBarState extends State<SideBar>
                           ),
                         ),
                         leading: CircleAvatar(
-                          child: Icon(
-                            Icons.perm_identity,
-                            color: Colors.white,
-                          ),
+                          child: Image.asset('assets/logo/app logo.png'),
                           radius: 40,
                         ),
                       ),

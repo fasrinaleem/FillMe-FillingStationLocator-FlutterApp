@@ -1,11 +1,12 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class FillingStation {
+  //Difining the Filling Station model attributes
   String stationName;
   String address;
-  String description;
-  String image;
-  LatLng locationCodes;
+  String description; //type of filling station is mentioned here (Refering from google maps)
+  String image; //Retriving the google map default image
+  LatLng locationCodes; //Getting the lattitude and longitude values of particular location
 
   FillingStation(
       {this.stationName,
@@ -15,7 +16,9 @@ class FillingStation {
       this.locationCodes});
 }
 
+// Assingning the list of filling station details in the model
 final List<FillingStation> fillingStations = [
+// 10 Filling stations were added to the list according to the project requirement
   FillingStation(
       stationName: 'Ceypetco Filling Station',
       address: 'WW4M+WP Koswatta',
