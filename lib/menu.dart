@@ -20,7 +20,7 @@ class MenuList extends StatelessWidget {
           children: <Widget>[
             Icon(
               icon,
-              color: Colors.black,
+              color: Colors.cyan,
               size: 28,
             ),
             SizedBox(

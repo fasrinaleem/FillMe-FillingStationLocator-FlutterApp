@@ -7,7 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="androidx.multidex.MultiDexApplication"
-        android:label="fillme"
+        android:label="Fill Me"
         android:icon="@mipmap/ic_launcher">
         
         <!-- Api key for map (Generated from fasrinaleem@gmail.com) -->
