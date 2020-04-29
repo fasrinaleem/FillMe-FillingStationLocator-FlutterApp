@@ -155,6 +155,7 @@ class _MyMapHomeState extends State<MyMapHome> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Nearest Filling Stations"),
+          backgroundColor : Color.fromRGBO(0, 214, 227, 1),
           centerTitle: true,
         ),
         body: Stack(

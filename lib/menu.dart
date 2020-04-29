@@ -5,6 +5,8 @@ class MenuList extends StatelessWidget {
   final String title;
   final Function onTap;
 
+// menu list contents
+// key, icon, title & onTap
   const MenuList({Key key, this.icon, this.title, this.onTap}) : super(key: key);
 
   @override

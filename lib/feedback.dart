@@ -155,7 +155,7 @@ class _FeedbackState extends State<Feedback> {
     feedback = doc.data['feedback'];
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(5.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -212,12 +212,29 @@ class _FeedbackState extends State<Feedback> {
     );
   }
 
+  Widget _submitButton() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 45),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(45),
+          color: Color.fromRGBO(0, 214, 227, 1)),
+      child: FlatButton(
+        child: Text(
+          "Submit",
+          style: TextStyle(color: Colors.white),
+        ),
+        onPressed: _submitFeedback,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text("Feedback"),
           centerTitle: true,
+          backgroundColor: Color.fromRGBO(0, 214, 227, 1),
         ),
         body: SingleChildScrollView(
             child: Container(
@@ -225,23 +242,14 @@ class _FeedbackState extends State<Feedback> {
           child: Stack(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      _email,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
+                    Expanded(
+                      flex: 2,
+                      child: SizedBox(),
                     ),
                     TextFormField(
                       decoration: InputDecoration(
@@ -253,33 +261,15 @@ class _FeedbackState extends State<Feedback> {
                       controller: _addFeedBackContrl,
                     ),
                     SizedBox(
-                      height: 12,
+                      height: 10,
                     ),
-                    Container(
-                      height: 45,
-                      width: 100,
-                      margin: EdgeInsets.symmetric(horizontal: 45),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(45),
-                          color: Color.fromRGBO(0, 214, 227, 1)),
-                      child: FlatButton(
-                        child: Text(
-                          "Submit",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        //color: Colors.green,
-                        onPressed: _submitFeedback,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
+                    _submitButton(),
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       alignment: Alignment.centerRight,
                     ),
                     Expanded(
-                      flex: 0,
+                      flex: 1,
                       child: SizedBox(),
                     ),
 

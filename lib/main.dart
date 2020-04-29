@@ -10,7 +10,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        appBarTheme: AppBarTheme(
+          color:Color.fromRGBO(0, 214, 227, 1),
+         )
       ),
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
