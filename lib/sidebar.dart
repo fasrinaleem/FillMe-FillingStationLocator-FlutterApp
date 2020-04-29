@@ -82,7 +82,7 @@ class _SideBarState extends State<SideBar>
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    var assetImage = new AssetImage('assets/images/app_logo.png');
+    var assetImage = new AssetImage('assets/images/logo.png');
     var image = new Image(image: assetImage);
 
     return StreamBuilder<bool>(
@@ -101,7 +101,15 @@ class _SideBarState extends State<SideBar>
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 1),
-                  color: Color.fromRGBO(3,15,10,1),
+                  color: Color.fromRGBO(3, 15, 10, 1),
+                  // decoration: BoxDecoration(
+                  //     gradient: LinearGradient(
+                  //         begin: Alignment.topCenter,
+                  //       colors: [
+                  //   Color.fromRGBO(0, 214, 227, 1),
+                  // Colors.blue[300],
+                  // Colors.blue[700]
+                  // ])),
                   child: Column(
                     children: <Widget>[
                       SizedBox(
@@ -109,7 +117,7 @@ class _SideBarState extends State<SideBar>
                       ),
                       ListTile(
                         title: Text(
-                          "FillMe",
+                          "Fill Me",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 30,
@@ -155,6 +163,10 @@ class _SideBarState extends State<SideBar>
                           BlocProvider.of<NavigationBloc>(context)
                               .add(NavigationEvents.FeedbackEvent);
                         },
+                      ),
+                      SizedBox(
+                        // Set space after login button
+                        height: 245,
                       ),
                       MenuList(
                         icon: Icons.lock_outline,
